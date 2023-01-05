@@ -1,18 +1,32 @@
 package ro.utcluj.helloworld.springboot.Logic;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.utcluj.helloworld.springboot.Model.Content;
 
 import java.util.List;
 
 @Service
-public interface ContentService {
+public class ContentService {
 
-    public List<Content> getAllContent();
+    @Autowired
+    ContentRepository contentRepository;
 
-    public Content getContentById(int id);
 
-    public void addContent(Content content);
+    public List<Content> getAllContent() {
+        return (List<Content>) contentRepository.findAll();
+    }
 
-    public void deleteContent(int id);
+
+    public Content getContentById(int id) {
+        return contentRepository.findById(id).get();
+    }
+
+    public void addContent(Content content) {
+        contentRepository.save(content);
+    }
+
+    public void deleteContent(int id) {
+        contentRepository.deleteById(id);
+    }
 }
