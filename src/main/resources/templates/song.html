@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Song:</h1>
+    <p th:text="${song.name}"></p>
+    <img th:src="${song.image}" />
+    <audio controls>
+        <source th:src="${song.address}" type="audio/mpeg">
+    </audio>
+    <p th:text="${song.description}"></p>
+</body>
+</html>
