@@ -12,10 +12,17 @@
     <artifactId>helloworld</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>helloworld</name>
-    <description>helloworld</description>
-    <properties>
-        <java.version>17</java.version>
-    </properties>
+    <description>helloworld</description><properties>
+    <java.version>17</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven.compiler.release>${java.version}</maven.compiler.release>
+    <project.build.sourceEncoding>US-ASCII</project.build.sourceEncoding>
+    <thymeleaf.version>3.0.12.RELEASE</thymeleaf.version>
+    <thymeleafspringsecurity5.version>3.1.1.RELEASE</thymeleafspringsecurity5.version>
+    <springframework.version>5.1.0.RELEASE</springframework.version>
+    <springsecurity.version>5.7.3</springsecurity.version>
+</properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -54,7 +61,27 @@
             <artifactId>thymeleaf-layout-dialect</artifactId>
             <version>3.1.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+            <version>${thymeleafspringsecurity5.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${springsecurity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${springsecurity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${springsecurity.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
