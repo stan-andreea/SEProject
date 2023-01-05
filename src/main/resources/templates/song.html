@@ -1,12 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
     <h1>Song:</h1>
+    <strong> Username: <span sec:authentication="name"></span> </strong>
+    <div sec:authorize="hasRole('ADMIN')">
+        This content is only shown to administrators.
+    </div>
+
+    <div sec:authorize="hasRole('USER')">
+        This content is only shown to users.
+    </div>
+    <div>
+        User: <span sec:authentication="name">NOT FOUND</span>
+        Spring Roles: <span sec:authentication="principal.authorities">NOT FOUND</span>
+    </div>
     <p th:text="${song.name}"></p>
     <img th:src="${song.image}" />
     <audio controls>

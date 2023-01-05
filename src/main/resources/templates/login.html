@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -7,19 +7,21 @@
 <body>
     <h1>Login</h1>
     <p>Please enter your username and password.</p>
-    <form>
+    <form th:action="@{/login}" method="post" class="form login">
         <input type="text" name="username" placeholder="Username">
         <input type="password" name="password" placeholder="Password">
         <input type="submit" value="Login">
     </form>
+    <div class="text--center" th:if="${param.error}"> Invalid username and password. </div> <div class="text--center" th:if="${param.logout}"> You have been logged out. </div>
 
 
     <h1>Sign Up</h1>
     <p> Please register with your username and password.</p>
-    <form>
+    <form th:action="@{/login}" method="post" class="form login">
         <input type="text" name="username" placeholder="Username">
         <input type="password" name="password" placeholder="Password">
         <input type="submit" value="Sign Up">
     </form>
+    <div class="text--center" th:if="${param.error}"> Invalid username and password. </div> <div class="text--center" th:if="${param.logout}"> You have been logged out. </div>
 </body>
 </html>
