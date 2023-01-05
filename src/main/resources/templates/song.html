@@ -4,26 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <h1>Song:</h1>
-    <strong> Username: <span sec:authentication="name"></span> </strong>
-    <div sec:authorize="hasRole('ADMIN')">
-        This content is only shown to administrators.
-    </div>
 
-    <div sec:authorize="hasRole('USER')">
-        This content is only shown to users.
-    </div>
-    <div>
-        User: <span sec:authentication="name">NOT FOUND</span>
-        Spring Roles: <span sec:authentication="principal.authorities">NOT FOUND</span>
-    </div>
     <p th:text="${song.name}"></p>
+
+    <p> count: <span th:text="${count}" id="output"></span></p>
+    <button onclick="updateValueAtEndPoint('#output','/like')" id="1">Like</button>
+
     <img th:src="${song.image}" />
     <audio controls>
         <source th:src="${song.address}" type="audio/mpeg">
     </audio>
     <p th:text="${song.description}"></p>
+
 </body>
+
+    <script>
+        function updateValueAtEndPoint(id,endpoint) {
+            $.post(endpoint).done(function (fragment) {
+                console.log(fragment);
+                $(id).html(fragment);
+            });
+        }
+    </script>
 </html>
