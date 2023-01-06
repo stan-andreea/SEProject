@@ -26,8 +26,11 @@ public class User {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false, unique = true, length = 45)
     private String username;
+
+    @Column(name = "password", nullable = false, length = 64)
+    private String password;
 
     //TODO private ArrayList<Integer> likes;
 

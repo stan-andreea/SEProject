@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ro.utcluj.helloworld.springboot.Logic.ContentService;
+import ro.utcluj.helloworld.springboot.Logic.UserRepository;
 
 @Controller
 public class LoginController {
@@ -16,9 +17,13 @@ public class LoginController {
         this.contentService = contentService;
     }
 
+
+
     @RequestMapping("/login")
     public String loginPage() {
         return "login";
     }
+
+
 
 }

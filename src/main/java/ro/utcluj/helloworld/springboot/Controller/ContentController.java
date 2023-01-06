@@ -57,7 +57,7 @@ public class ContentController {
     }
 
 
-    @RequestMapping(value="/addStudent", method=RequestMethod.POST)
+    @RequestMapping(value="/addContent", method=RequestMethod.POST)
     public ModelAndView add(@ModelAttribute("studentForm") Content content) {
 
         contentService.addContent(content);
@@ -65,7 +65,7 @@ public class ContentController {
 
     }
 
-    @RequestMapping(value="/deleteStudent/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/deleteContentt/{id}", method=RequestMethod.GET)
     public ModelAndView delete(@PathVariable("id") int id) {
 
         contentService.deleteContent(id);

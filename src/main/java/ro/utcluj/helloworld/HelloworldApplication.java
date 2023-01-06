@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
 import ro.utcluj.helloworld.springboot.Logic.ContentService;
+import ro.utcluj.helloworld.springboot.Logic.UserRepository;
 import ro.utcluj.helloworld.springboot.Model.Content;
 
 
@@ -19,6 +20,9 @@ import ro.utcluj.helloworld.springboot.Model.Content;
 public class HelloworldApplication {
     @Autowired
     ContentService contentService;
+
+    @Autowired
+    private UserRepository userRepo;
 
     public HelloworldApplication(ContentService contentService) {
         this.contentService = contentService;
