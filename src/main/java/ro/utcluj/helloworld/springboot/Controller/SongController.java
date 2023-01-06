@@ -1,22 +1,23 @@
 package ro.utcluj.helloworld.springboot.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ro.utcluj.helloworld.springboot.Logic.ContentService;
 import ro.utcluj.helloworld.springboot.Model.Content;
 import ro.utcluj.helloworld.springboot.Model.CountDemo;
 
 @Controller
 public class SongController {
-
+    @Autowired
+    private ContentService contentService;
     @GetMapping("/songs/{id}")
     public String songPage(@PathVariable String id, Model model, Authentication authentication) {
         // retrieve song data from a database or service
-
-        Content song = new Content("hello song ",2);
+        Content song  = contentService.getContentById(Integer.parseInt(id));
         model.addAttribute("song", song);
-        model.addAttribute("count",CountDemo.counter);
         model.addAttribute("id",id);
         return "song";
     }

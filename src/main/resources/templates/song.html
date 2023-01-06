@@ -7,16 +7,17 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+    <h2><a href="/"> HOME </a></h2>
     <h1>Song:</h1>
 
     <p th:text="${song.title}"></p>
     <p th:text="${id}"></p>
 
     <p> Likes: <span th:text="${song.likes}" id="likes"></span></p>
-    <button onclick="updateValueAtEndPoint('#likes','/like/')" >Like</button>
+    <button onclick="updateValueAtEndPoint('#likes','#dislikes','/like/','/getdislikes/')" >Like</button>
 
     <p> Dislikes: <span th:text="${song.dislikes}" id="dislikes"></span></p>
-    <button onclick="updateValueAtEndPoint('#dislikes','/dislike/')" >Dislike</button>
+    <button onclick="updateValueAtEndPoint('#dislikes','#likes','/dislike/','/getlikes/')" >Dislike</button>
 
     <img th:src="${song.image}" />
     <audio controls>
@@ -26,10 +27,15 @@
 
 </body>
     <script>
-        function updateValueAtEndPoint(id,endpoint) {
+        function updateValueAtEndPoint(id,id2,endpoint,endpoint2) {
             $.post(endpoint + [[${id}]]).done(function (fragment) {
-                console.log(fragment);
                 $(id).html(fragment);
+                updateValue(id2, endpoint2);
+            });
+        }
+        function updateValue(id2,endpoint2) {
+            $.post(endpoint2 + [[${id}]]).done(function (fragment) {
+                $(id2).html(fragment);
             });
         }
     </script>

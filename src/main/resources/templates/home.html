@@ -20,8 +20,9 @@
   </div>
 
   <tr th:each="song: ${songs}">
-      <td th:text="${song.name}" />
-      <td th:text="${song.address}" />
+      <td th:text="${song.title}" />
+      <td> <a th:href="|/songs/${song.id}|" th:text="${song.title}"/> </td>
+      <br/>
   </tr>
 </body>
 </html>
