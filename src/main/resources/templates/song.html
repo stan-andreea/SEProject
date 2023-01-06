@@ -9,22 +9,25 @@
 <body>
     <h1>Song:</h1>
 
-    <p th:text="${song.name}"></p>
+    <p th:text="${song.title}"></p>
+    <p th:text="${id}"></p>
 
-    <p> count: <span th:text="${count}" id="output"></span></p>
-    <button onclick="updateValueAtEndPoint('#output','/like')" id="1">Like</button>
+    <p> Likes: <span th:text="${song.likes}" id="likes"></span></p>
+    <button onclick="updateValueAtEndPoint('#likes','/like/')" >Like</button>
+
+    <p> Dislikes: <span th:text="${song.dislikes}" id="dislikes"></span></p>
+    <button onclick="updateValueAtEndPoint('#dislikes','/dislike/')" >Dislike</button>
 
     <img th:src="${song.image}" />
     <audio controls>
-        <source th:src="${song.address}" type="audio/mpeg">
+        <source th:src="${song.link}" type="audio/mpeg">
     </audio>
     <p th:text="${song.description}"></p>
 
 </body>
-
     <script>
         function updateValueAtEndPoint(id,endpoint) {
-            $.post(endpoint).done(function (fragment) {
+            $.post(endpoint + [[${id}]]).done(function (fragment) {
                 console.log(fragment);
                 $(id).html(fragment);
             });

@@ -2,7 +2,6 @@ package ro.utcluj.helloworld.springboot.Model;
 
 
 import lombok.*;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
 
@@ -23,30 +22,37 @@ public class Content {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    public Integer id;
 
     @Column(name = "title")
-    private String title;
+    public String title;
 
     @Column(name = "description")
-    private String description;
+    public String description;
 
     @Column(name = "link")
-    private String link;
+    public String link;
 
     @Column(name = "likes")
-    private int likes;
+    public int likes;
 
     @Column(name = "dislikes")
-    private int dislikes;
+    public int dislikes;
 
     @Column(name = "views")
-    private int views;
+    public int views;
 
     @Column(name = "image")
-    private String image;
+    public String image;
 
-
-
-
+    public Content(String title, int id) {
+        this.title = title;
+        this.description = "";
+        this.link = "";
+        this.likes = 0;
+        this.dislikes = 0;
+        this.views = 0;
+        this.image = "";
+        this.id = id;
+    }
 }

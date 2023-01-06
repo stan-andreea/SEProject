@@ -10,7 +10,7 @@ import java.util.List;
 public class ContentService {
 
     @Autowired
-    ContentRepository contentRepository;
+    static ContentRepository contentRepository;
 
 
     public List<Content> getAllContent() {
@@ -18,7 +18,7 @@ public class ContentService {
     }
 
 
-    public Content getContentById(int id) {
+    public static Content getContentById(int id) {
         return contentRepository.findById(id).get();
     }
 
