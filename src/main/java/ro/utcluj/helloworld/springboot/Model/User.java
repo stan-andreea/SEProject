@@ -33,11 +33,11 @@ public class User {
 
     //TODO private ArrayList<Integer> dislikes;
 
-    public boolean userLikes(int parseInt) {
+    public boolean userLikes(int id) {
         //TODO
         return false;
     }
-    public boolean userDislikes(int parseInt) {
+    public boolean userDislikes(int id) {
         //TODO
         return false;
     }

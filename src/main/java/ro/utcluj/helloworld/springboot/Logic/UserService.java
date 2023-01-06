@@ -10,12 +10,6 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public static User getUserById(){
-        //TODO
-
-        return new User();
-    }
-
     public static User getUserByUserName(String username) {
         //TODO
 
