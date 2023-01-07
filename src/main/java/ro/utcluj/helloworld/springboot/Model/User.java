@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,6 +33,9 @@ public class User {
     @Column(name = "password", nullable = false, length = 64)
     private String password;
 
+    private boolean enabled;
+
+
     //TODO private ArrayList<Integer> likes;
 
     //TODO private ArrayList<Integer> dislikes;
@@ -56,4 +60,13 @@ public class User {
     public void addDislike(Integer songId) {
         //todo
     }
+
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
 }

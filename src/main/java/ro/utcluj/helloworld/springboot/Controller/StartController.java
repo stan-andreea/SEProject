@@ -35,6 +35,7 @@ public class StartController {
 
         userRepo.save(user);
 
+
         return "register_success";
     }
 }
