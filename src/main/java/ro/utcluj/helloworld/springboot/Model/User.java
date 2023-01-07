@@ -2,6 +2,8 @@ package ro.utcluj.helloworld.springboot.Model;
 
 
 import lombok.*;
+import ro.utcluj.helloworld.springboot.Logic.ContentRepository;
+import ro.utcluj.helloworld.springboot.Logic.ContentService;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -38,27 +40,58 @@ public class User {
 
     //TODO private ArrayList<Integer> likes;
 
-    //TODO private ArrayList<Integer> dislikes;
+
+    @OneToMany
+    @Column(name = "likes")
+    private ArrayList<Content> likes ;
+
+    @Column(name = "dislikes")
+    @OneToMany
+    private List<Content> dislikes = new ArrayList<>();
+
+
 
     public boolean userLikes(int id) {
-        //TODO
-        return false;
+
+        ContentService contentService = new ContentService();
+        Content likedContent = contentService.getContentById(id);
+        this.likes.add(likedContent);
+        return true;
     }
     public boolean userDislikes(int id) {
-        //TODO
-        return false;
+        ContentService contentService = new ContentService();
+        Content dislikedContent = contentService.getContentById(id);
+        this.dislikes.add(dislikedContent);
+        return true;
     }
     public void removeDislike(Integer songId) {
-        //TODO
+        ContentService contentService = new ContentService();
+        Content dislikedContent = contentService.getContentById(songId);
+        dislikes.remove(dislikedContent);
     }
     public void removeLike(Integer songId) {
-        //TODO
+        ContentService contentService = new ContentService();
+        Content likedContent = contentService.getContentById(songId);
+        likes.remove(likedContent);
     }
     public void addLike(Integer songId) {
-        //todo
+        ContentService contentService = new ContentService();
+        Content content = contentService.getContentById(songId);
+        if(!dislikes.contains(content))
+        {
+            int currentLikes = content.getLikes();
+            content.setLikes(currentLikes+1);
+        }
+
     }
     public void addDislike(Integer songId) {
-        //todo
+        ContentService contentService = new ContentService();
+        Content content = contentService.getContentById(songId);
+        if(!likes.contains(content)){
+            int currentDislikes = content.getDislikes();
+            content.setLikes(currentDislikes+1);
+        }
+
     }
 
     @ManyToMany
