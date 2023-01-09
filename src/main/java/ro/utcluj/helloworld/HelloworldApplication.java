@@ -26,8 +26,8 @@ public class HelloworldApplication {
 
     public HelloworldApplication(ContentService contentService) {
         this.contentService = contentService;
-        contentService.addContent(new Content("song name",1));
-        contentService.addContent(new Content("Hehe",2));
+//        contentService.addContent(new Content("song name",1));
+//        contentService.addContent(new Content("Hehe",2));
     }
 
     @Bean
