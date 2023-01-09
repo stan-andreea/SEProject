@@ -13,14 +13,16 @@
   </div>
 
   <tr th:each="song: ${songs}">
+      <div class="row">
       <a th:href="|/songs/${song.id}|">
-          <img th:src="${song.image}">
-          <div>
+          <div><img th:src="${song.image}"/></div>
+          <div class="data" >
               <td th:text="${song.title}" /></br>
               <td th:text="${song.artist}"/>
-              <td th:text="| ${song.views} views|"/>
+              <td th:text="| • ${song.views} views|"/>
           </div>
       <br/>
+      </div>
       </a>
   </tr>
 </body>

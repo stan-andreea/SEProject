@@ -5,24 +5,27 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/song.css">
 </head>
 <body>
     <h2><a href="/"> HOME </a></h2>
-    <h1>Song:</h1>
-
-    <p th:text="${song.title}"></p>
-    <p th:text="${id}"></p>
-    <p th:text="${song.artist}"></p>
-
-
-    <p> Likes: <span th:text="${song.likes}" id="likes"></span></p>
-    <button onclick="updateValueAtEndPoint('#likes','#dislikes','/like/','/getdislikes/')" >Like</button>
-
-    <p> Dislikes: <span th:text="${song.dislikes}" id="dislikes"></span></p>
-    <button onclick="updateValueAtEndPoint('#dislikes','#likes','/dislike/','/getlikes/')" >Dislike</button>
+    <h1>
+        <span th:text="${song.title}"></span> •
+        <span th:text="${song.artist}"></span>
+    </h1>
 
     <img th:src="${song.image}" />
+
+    <div class="stats">
+        <div class="info">
+            <button onclick="updateValueAtEndPoint('#likes','#dislikes','/like/','/getdislikes/')" >Like</button>
+            <p> Likes: <span th:text="${song.likes}" id="likes"></span></p>
+        </div>
+        <div class="info">
+            <button onclick="updateValueAtEndPoint('#dislikes','#likes','/dislike/','/getlikes/')" >Dislike</button>
+            <p> Dislikes: <span th:text="${song.dislikes}" id="dislikes"></span></p>
+        </div>
+    </div>
     <audio controls>
         <source th:src="${song.link}" type="audio/mpeg">
     </audio>

@@ -1,9 +1,25 @@
 img{
     width: 100px;
 }
-tr a{
-    display: flex;
+.row a{
+    display:flex;
+    color: black;
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
 }
+a:hover{
+    background: rgba(230,230,230);
+}
+.data{
+    display:flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+}
+
 div{
-    width:60%;
+    margin: auto 10px auto 10px;
 }

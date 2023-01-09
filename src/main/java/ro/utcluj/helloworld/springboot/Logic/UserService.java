@@ -10,7 +10,6 @@ import ro.utcluj.helloworld.springboot.Model.User;
 @Component
 public class UserService {
 
-
     @Autowired
     private UserRepository userRepository;
 
@@ -19,4 +18,7 @@ public class UserService {
     }
 
 
+    public void addUser(User user) {
+        userRepository.save(user);
+    }
 }

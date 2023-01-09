@@ -41,6 +41,7 @@ public class SongRESTController {
             user.addLike(songId);
         }
         contentService.addContent(content);
+        userService.addUser(user);
         return Integer.toString(content.getLikes());
     }
 
@@ -52,6 +53,7 @@ public class SongRESTController {
         int songId = Integer.parseInt(id);
         Content content = contentService.getContentById(songId);
         User user = userService.getUserByUserName(authentication.getName());
+        System.out.println(user.getUsername());
 
         if(user.userLikes(songId)){
             content.setLikes(content.getLikes()-1);
@@ -62,6 +64,7 @@ public class SongRESTController {
             user.addDislike(songId);
         }
         contentService.addContent(content);
+        userService.addUser(user);
         return Integer.toString(content.getDislikes());
     }
 
