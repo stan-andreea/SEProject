@@ -4,25 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
   <h1>Home</h1>
-  <div sec:authorize="hasRole('ADMIN')">
-      This content is only shown to administrators.
-  </div>
-
-  <div sec:authorize="hasRole('USER')">
-      This content is only shown to users.
-  </div>
   <div>
       User: <span sec:authentication="name">NOT FOUND</span> <br/>
-      Spring Roles: <span sec:authentication="principal.authorities">NOT FOUND</span>
   </div>
 
   <tr th:each="song: ${songs}">
-      <td th:text="${song.title}" />
-      <td> <a th:href="|/songs/${song.id}|" th:text="${song.title}"/> </td>
+      <a th:href="|/songs/${song.id}|">
+          <img th:src="${song.image}">
+          <div>
+              <td th:text="${song.title}" /></br>
+              <td th:text="${song.artist}"/>
+              <td th:text="| ${song.views} views|"/>
+          </div>
       <br/>
+      </a>
   </tr>
 </body>
 </html>
