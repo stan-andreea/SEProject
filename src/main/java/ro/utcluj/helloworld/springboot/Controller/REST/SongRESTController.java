@@ -17,6 +17,9 @@ import ro.utcluj.helloworld.springboot.Model.User;
 public class SongRESTController {
     @Autowired
     ContentService contentService;
+    @Autowired
+    UserService userService;
+
 
     public SongRESTController(ContentService contentService) {
         this.contentService = contentService;
@@ -28,7 +31,7 @@ public class SongRESTController {
         // like logic
         int songId = Integer.parseInt(id);
         Content content = contentService.getContentById(songId);
-        User user = UserService.getUserByUserName(authentication.getName());
+        User user = userService.getUserByUserName(authentication.getName());
         if(user.userDislikes(songId)){
             content.setDislikes(content.getDislikes()-1);
             user.removeDislike(songId);
@@ -48,7 +51,7 @@ public class SongRESTController {
         System.out.println(id+ "ala");
         int songId = Integer.parseInt(id);
         Content content = contentService.getContentById(songId);
-        User user = UserService.getUserByUserName(authentication.getName());
+        User user = userService.getUserByUserName(authentication.getName());
 
         if(user.userLikes(songId)){
             content.setLikes(content.getLikes()-1);

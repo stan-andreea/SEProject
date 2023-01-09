@@ -11,13 +11,10 @@ import ro.utcluj.helloworld.springboot.Model.User;
 public class UserService {
 
 
-    private static UserRepository userRepository;
     @Autowired
-    ContentRepository contentRepository;
-//    @Autowired
-//    UserRepository userRepository;
+    private UserRepository userRepository;
 
-    public static User getUserByUserName(String username) {
+    public User getUserByUserName(String username) {
         return userRepository.findByUsername(username);
     }
 

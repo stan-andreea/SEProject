@@ -65,10 +65,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
+        /*auth
                 .inMemoryAuthentication()
                 .withUser("user").password("{noop}pass").roles("USER")
                 .and()
-                .withUser("admin").password("{noop}pass").roles("ADMIN");
+                .withUser("admin").password("{noop}pass").roles("ADMIN");*/
     }
 }
