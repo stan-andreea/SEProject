@@ -65,7 +65,7 @@ public class ContentController {
 
     }
 
-    @RequestMapping(value="/deleteContentt/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/deleteContent/{id}", method=RequestMethod.GET)
     public ModelAndView delete(@PathVariable("id") int id) {
 
         contentService.deleteContent(id);
