@@ -17,6 +17,8 @@ public class SongController {
     public String songPage(@PathVariable String id, Model model, Authentication authentication) {
         // retrieve song data from a database or service
         Content song  = contentService.getContentById(Integer.parseInt(id));
+        song.setViews(song.getViews() + 1);
+        contentService.addContent(song);
         model.addAttribute("song", song);
         model.addAttribute("id",id);
         return "song";
