@@ -32,10 +32,12 @@ public class StartController {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
+        if(userRepo.findByUsername(user.getUsername())==null){
+            userRepo.save(user);
+            return "register_success";
+        }
+        else
+            return "register_fail";
 
-        userRepo.save(user);
-
-
-        return "register_success";
     }
 }

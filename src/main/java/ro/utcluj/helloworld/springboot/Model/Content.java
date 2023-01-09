@@ -27,6 +27,9 @@ public class Content {
     @Column(name = "title")
     public String title;
 
+    @Column(name = "artist")
+    public String artist;
+
     @Column(name = "description")
     public String description;
 
@@ -45,8 +48,9 @@ public class Content {
     @Column(name = "image")
     public String image;
 
-    public Content(String title, int id) {
+    public Content(String title, String artist, int id) {
         this.title = title;
+        this.artist = artist;
         this.description = "";
         this.link = "";
         this.likes = 0;
