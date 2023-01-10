@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+        <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+        <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    
+    <link rel="stylesheet" href="/css/song.css">
+</head>
+<body>
+
+<h1>Bounded Retransmission Protocol (BRP) Example</h1>
+<button id="send-request-button">Send Request</button>
+<p id="response-text"></p>
+<script>
+    const BRP_TIMEOUT = 1000; // retransmission timeout in milliseconds
+    const BRP_MAX_RETRIES = 5; // maximum number of retries
+
+    // Client-side implementation
+    async function sendRequest(request) {
+        let retries = 0;
+        let response;
+
+        // Send the request and wait for the response
+        while (retries < BRP_MAX_RETRIES) {
+            response = send(request);
+            if (response) {
+                // Return the response if it is received
+                return response;
+            } else {
+                // Increment the retry count and wait for the timeout
+                retries++;
+                await sleep(BRP_TIMEOUT);
+            }
+        }
+
+        // Return null if the maximum number of retries is reached
+        return null;
+    }
+
+    // Server-side implementation
+    function handleRequest(request) {
+        // Process the request and return the response
+        let response = process(request);
+        return response;
+    }
+
+    // Add an event listener to the send request button
+    document.getElementById("send-request-button").addEventListener("click", () => {
+        let response = sendRequest("request");
+        let responseText = document.getElementById("response-text");
+        if (response) {
+            responseText.innerHTML = "Response: " + response;
+        } else {
+            responseText.innerHTML = "No response received.";
+        }
+    });
+</script>
+
+
+</body>
+</html>
