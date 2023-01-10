@@ -1,8 +1,6 @@
 package ro.utcluj.helloworld.springboot.Model;
 
-
 import lombok.*;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 
