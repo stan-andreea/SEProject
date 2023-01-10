@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import ro.utcluj.helloworld.springboot.Logic.ContentService;
 import ro.utcluj.helloworld.springboot.Logic.UserService;
 import ro.utcluj.helloworld.springboot.Model.Content;
-import ro.utcluj.helloworld.springboot.Model.CountDemo;
 import ro.utcluj.helloworld.springboot.Model.User;
 
 @RestController

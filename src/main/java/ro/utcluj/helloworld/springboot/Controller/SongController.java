@@ -6,10 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ro.utcluj.helloworld.springboot.Logic.ContentService;
-import ro.utcluj.helloworld.springboot.Logic.Recommandation.RecommenderSystem;
 import ro.utcluj.helloworld.springboot.Logic.UserService;
 import ro.utcluj.helloworld.springboot.Model.Content;
-import ro.utcluj.helloworld.springboot.Model.CountDemo;
 
 @Controller
 public class SongController {
