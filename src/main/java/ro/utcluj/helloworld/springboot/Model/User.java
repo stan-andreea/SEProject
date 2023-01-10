@@ -37,7 +37,6 @@ public class User {
 
     private boolean enabled;
 
-
     @Column(name = "likes", nullable = false, length = 1024)
     private String likes = new String();
 
