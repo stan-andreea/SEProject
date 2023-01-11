@@ -6,9 +6,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.http.*;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,7 +17,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 public class BRPController {
     private static final int BRP_TIMEOUT = 1000; // retransmission timeout in milliseconds
     private static final int BRP_MAX_RETRIES = 5; // maximum number of retries
@@ -45,6 +46,12 @@ public class BRPController {
 
         return response;
     }
+
+    @GetMapping("/brp")
+    public String viewBrpPage() {
+        return "brp";
+    }
+
 
     public String sendRequest(String request) {
         int retries = 0;

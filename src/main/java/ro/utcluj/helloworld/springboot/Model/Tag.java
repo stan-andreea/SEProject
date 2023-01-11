@@ -1,8 +1,9 @@
 package ro.utcluj.helloworld.springboot.Model;
 
 public enum Tag {
-    ROCK,
-    POP,
+    rock,
+    pop,
+    rap,
     HIP_HOP,
     JAZZ,
     CLASSICAL,

@@ -23,7 +23,7 @@ public class ContentController {
     @RequestMapping(value="/list", method= RequestMethod.GET)
     public ModelAndView list() {
 
-        ModelAndView model = new ModelAndView("student_list");
+        ModelAndView model = new ModelAndView("content_list");
         List<Content> contentList = contentService.getAllContent();
         model.addObject("contentList", contentList);
 
@@ -58,7 +58,7 @@ public class ContentController {
 
 
     @RequestMapping(value="/addContent", method=RequestMethod.POST)
-    public ModelAndView add(@ModelAttribute("studentForm") Content content) {
+    public ModelAndView add(@ModelAttribute("contentForm") Content content) {
 
         contentService.addContent(content);
         return new ModelAndView("redirect:/content/list");

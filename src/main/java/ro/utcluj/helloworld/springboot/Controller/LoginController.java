@@ -17,13 +17,9 @@ public class LoginController {
     @Autowired
     ContentService contentService;
 
-
-
     public LoginController(ContentService contentService) {
         this.contentService = contentService;
     }
-
-
 
     @RequestMapping("/login")
     public String loginPage(Model model) {

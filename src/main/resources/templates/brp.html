@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
-    <title><!DOCTYPE html>
-        <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-        <head>
-        <meta charset="UTF-8">
-        <title>Title</title>
-    
-    <link rel="stylesheet" href="/css/song.css">
+<meta charset="UTF-8">
+<title>Title</title>
+
+<link rel="stylesheet" href="/css/song.css">
 </head>
 <body>
 
 <h1>Bounded Retransmission Protocol (BRP) Example</h1>
+<input type="text" id="request-text" placeholder="Enter Request Text">
 <button id="send-request-button">Send Request</button>
 <p id="response-text"></p>
+<p id="response-result"></p>
 <script>
     const BRP_TIMEOUT = 1000; // retransmission timeout in milliseconds
     const BRP_MAX_RETRIES = 5; // maximum number of retries
@@ -42,6 +40,25 @@
         return null;
     }
 
+    function send(request) {
+        // Send the request to the server and return the response
+        try {
+            // Use the fetch function or XMLHttpRequest or any other library to send the request and receive the response
+            return fetch("http://localhost:8080/home", {
+                method: "POST",
+                body: request,
+                headers: { 'Content-Type': 'application/json' },
+            })
+                .then(res => res.json())
+                .then(data => {
+                    return data
+                });
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+
     // Server-side implementation
     function handleRequest(request) {
         // Process the request and return the response
@@ -50,13 +67,33 @@
     }
 
     // Add an event listener to the send request button
-    document.getElementById("send-request-button").addEventListener("click", () => {
-        let response = sendRequest("request");
-        let responseText = document.getElementById("response-text");
-        if (response) {
+
+    document.getElementById("send-request-button").addEventListener("click", async () => {
+        let requestText = document.getElementById("request-text").value;
+        try {
+            let response = await sendRequest(requestText);
+            let responseText = document.getElementById("response-text");
             responseText.innerHTML = "Response: " + response;
-        } else {
-            responseText.innerHTML = "No response received.";
+            console.log(response);
+
+            // Use JQuery to make an AJAX call
+            $.ajax({
+                type: "POST",
+                url: "/handle-request",
+                data: requestText,
+                contentType: "application/json",
+                success: function(responseData) {
+                    let responseResult = document.getElementById("response-result");
+                    responseResult.innerHTML = responseData;
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        } catch (error) {
+            console.log(error);
+            responseText.innerHTML
+                = "No response received.";
         }
     });
 </script>

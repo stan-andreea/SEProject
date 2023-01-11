@@ -8,10 +8,8 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
-import ro.utcluj.helloworld.springboot.Logic.BRPConnection;
 import ro.utcluj.helloworld.springboot.Logic.ContentService;
 import ro.utcluj.helloworld.springboot.Logic.UserRepository;
-import ro.utcluj.helloworld.springboot.Model.Content;
 
 import java.io.IOException;
 
@@ -40,9 +38,6 @@ public class HelloworldApplication {
 
     public static void main(String[] args) throws IOException {
         SpringApplication.run(HelloworldApplication.class, args);
-        BRPConnection connection = new BRPConnection("localhost", 2222);
-        connection.send("Hello, World!");
-        String message = connection.receive();
 
     }
 

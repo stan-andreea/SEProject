@@ -24,11 +24,7 @@ public class ContentService {
         return contentRepository.findById(id).get();
     }
 
-    /*public Content updateContentAtId(int id, Content content){
-        Content contentref  = contentRepository.getReferenceById(id);
-        contentref = content;
-        return contentRepository.findById(id).get();
-    }*/
+
 
     public void addContent(Content content) {
         contentRepository.save(content);
