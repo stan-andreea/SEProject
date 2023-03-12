@@ -102,5 +102,7 @@ public class User {
         setDislikesAsList(dislikes);
     }
 
-
+    public User(String username) {
+        this.username = username;
+    }
 }

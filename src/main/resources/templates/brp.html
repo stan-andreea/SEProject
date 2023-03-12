@@ -1,31 +1,40 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<meta charset="UTF-8">
-<title>Title</title>
-
-<link rel="stylesheet" href="/css/song.css">
+    <meta charset="UTF-8">
+    <title>BRP Example</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 <h1>Bounded Retransmission Protocol (BRP) Example</h1>
-<input type="text" id="request-text" placeholder="Enter Request Text">
-<button id="send-request-button">Send Request</button>
+<form>
+    <label>Username:</label>
+    <input type="text" id="username" placeholder="Enter username">
+    <br>
+    <br>
+    <button id="send-request-button">Send Request</button>
+</form>
 <p id="response-text"></p>
-<p id="response-result"></p>
+
 <script>
     const BRP_TIMEOUT = 1000; // retransmission timeout in milliseconds
     const BRP_MAX_RETRIES = 5; // maximum number of retries
 
-    // Client-side implementation
-    async function sendRequest(request) {
+    async function sendRequest() {
+        let username = document.getElementById("username").value;
+
+        let user = {
+            "username": username,
+
+        }
         let retries = 0;
         let response;
-
         // Send the request and wait for the response
         while (retries < BRP_MAX_RETRIES) {
-            response = send(request);
+            response = send(user);
             if (response) {
                 // Return the response if it is received
                 return response;
@@ -35,69 +44,43 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                 await sleep(BRP_TIMEOUT);
             }
         }
-
         // Return null if the maximum number of retries is reached
         return null;
     }
 
-    function send(request) {
+    function send(user) {
         // Send the request to the server and return the response
         try {
             // Use the fetch function or XMLHttpRequest or any other library to send the request and receive the response
-            return fetch("http://localhost:8080/home", {
+            return fetch("http://localhost:8080/send-request", {
                 method: "POST",
-                body: request,
+                body: JSON.stringify(user),
                 headers: { 'Content-Type': 'application/json' },
             })
                 .then(res => res.json())
                 .then(data => {
-                    return data
+                    return data;
                 });
         } catch (err) {
             console.error(err);
         }
     }
 
-
-    // Server-side implementation
-    function handleRequest(request) {
-        // Process the request and return the response
-        let response = process(request);
-        return response;
-    }
-
     // Add an event listener to the send request button
-
     document.getElementById("send-request-button").addEventListener("click", async () => {
-        let requestText = document.getElementById("request-text").value;
         try {
-            let response = await sendRequest(requestText);
+            let response = await sendRequest();
             let responseText = document.getElementById("response-text");
-            responseText.innerHTML = "Response: " + response;
-            console.log(response);
-
-            // Use JQuery to make an AJAX call
-            $.ajax({
-                type: "POST",
-                url: "/handle-request",
-                data: requestText,
-                contentType: "application/json",
-                success: function(responseData) {
-                    let responseResult = document.getElementById("response-result");
-                    responseResult.innerHTML = responseData;
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            });
+            responseText.innerHTML = "Response: " + JSON.stringify(response);
+            console.log(responseText)
         } catch (error) {
             console.log(error);
-            responseText.innerHTML
-                = "No response received.";
+            let responseText = document.getElementById("response-text");
+            responseText.innerHTML = "No response received.";
         }
     });
 </script>
-
-
 </body>
 </html>
+
+

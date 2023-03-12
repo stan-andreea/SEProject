@@ -42,7 +42,7 @@ public class RecommenderSystem {
         }
         //hashmap to array list
         ArrayList<Map.Entry<Integer, Double>> list = new ArrayList<>(similarityMap.entrySet());
-        list.sort(Comparator.comparing(Map.Entry<Integer,Double>::getValue).reversed().reversed());
+        list.sort(Comparator.comparing(Map.Entry<Integer,Double>::getValue).reversed());
         for (Map.Entry<Integer,Double> item : list){
             recommenderList.add(contentService.getContentById(item.getKey()));
         }
